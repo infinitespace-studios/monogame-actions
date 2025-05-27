@@ -1,0 +1,14 @@
+name: 'Install Wine'
+description: 'Installs wine on the githib action bot.'
+author: 'infspace-studios'
+inputs:
+  my-input:
+    description: 'An example input'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Do Step 1
+      run: echo "Step 1 with ${{ inputs.my-input }}"
+    - name: Do Step 2
+      run: echo "Step 2"
