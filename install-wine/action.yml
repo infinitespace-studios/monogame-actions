@@ -2,15 +2,12 @@ name: 'Install Wine'
 description: 'Installs wine on the githib action bot.'
 author: 'infinitespace-studios'
 inputs:
-  my-input:
-    description: 'An example input'
+  wineprefix:
+    description: 'The prefix to use for wine'
     required: true
 runs:
   using: "composite"
   steps:
-    - name: Do Step 1
-      run: echo "Step 1 with ${{ inputs.my-input }}"
-      shell: bash
     - name: Install Wine Dependencies for MacOS
       if: runner.os == 'macOS'
       run: |
@@ -20,7 +17,7 @@ runs:
         wine --version
         which wine
         wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
-        export WINEPREFIX=${{ matrix.wineprefix }}
+        export WINEPREFIX=${{ inputs.wineprefix }}
         wine dotnet --info
       shell: bash
     - name: Install Wine Dependencies for Linux
@@ -39,6 +36,6 @@ runs:
         wine --version
         which wine
         wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
-        export WINEPREFIX=${{ matrix.wineprefix }}
+        export WINEPREFIX=${{ inputs.wineprefix }}
         wine dotnet --info
       shell: bash
