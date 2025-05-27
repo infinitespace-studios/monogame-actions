@@ -10,5 +10,7 @@ runs:
   steps:
     - name: Do Step 1
       run: echo "Step 1 with ${{ inputs.my-input }}"
+      shell: bash
     - name: Do Step 2
       run: echo "Step 2"
+      shell: bash
