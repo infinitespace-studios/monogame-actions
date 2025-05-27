@@ -3,7 +3,7 @@ name: Test My Action
 on:
   push:
     paths:
-      - 'install-wine/**'
+      - '**'
       - '.github/workflows/main.yml'
 
 jobs:
