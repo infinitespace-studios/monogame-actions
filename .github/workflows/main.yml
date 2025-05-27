@@ -1,0 +1,17 @@
+name: Test My Action
+
+on:
+  push:
+    paths:
+      - 'install-wine/**'
+      - '.github/workflows/main.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run my action
+        uses: ./install-wine
+        with:
+          my-input: "test value"
