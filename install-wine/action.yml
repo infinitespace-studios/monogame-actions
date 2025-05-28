@@ -5,7 +5,7 @@ inputs:
   wineprefix:
     description: 'The prefix to use for wine'
     required: false
-    default: '${{ env.HOME }}/.winemonogame'
+    default: '$HOME/.winemonogame'
 runs:
   using: "composite"
   steps:
