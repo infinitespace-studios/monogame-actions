@@ -14,4 +14,4 @@ jobs:
       - name: Install Wine
         uses: ./install-wine
         with:
-          wineprefix: ${{ env.HOME }}/.winemonogame
+          wineprefix: "$HOME/.winemonogame"
