@@ -36,7 +36,7 @@ runs:
         wine --version
         which wine
         wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
-        export WINEPREFIX=
+        export WINEPREFIX=/home/runner/.winemonogame
         wine dotnet --info
         echo "WINEPREFIX=/home/runner/.winemonogame" >> $GITHUB_ENV
       shell: bash
