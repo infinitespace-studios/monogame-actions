@@ -23,6 +23,9 @@ runs:
     - name: Install Wine Dependencies for Linux
       if: runner.os == 'Linux'
       run: |
+        sudo apt clean
+        sudo rm -rf /var/lib/apt/lists/*
+        sudo apt update
         sudo apt install p7zip-full curl
         sudo dpkg --add-architecture i386 
         sudo mkdir -pm755 /etc/apt/keyrings
