@@ -4,6 +4,9 @@ author: 'infinitespace-studios'
 runs:
   using: "composite"
   steps:
+    - name: Info
+      run: pwd
+      shell: bash
     - name: Install Wine Dependencies for MacOS
       if: runner.os == 'macOS'
       run: |
