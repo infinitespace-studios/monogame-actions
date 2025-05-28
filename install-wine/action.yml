@@ -17,8 +17,33 @@ runs:
         which wine
         echo "WINEPREFIX=/Users/runner/.winemonogame" >> $GITHUB_ENV
       shell: bash
-    - name: Install Wine Dependencies for Linux
-      if: runner.os == 'Linux'
+    - name: Get Ubuntu version
+      id: osinfo
+      run: |
+        source /etc/os-release
+        echo "VERSION_ID=$VERSION_ID"
+        echo "version_id=$VERSION_ID" >> "$GITHUB_OUTPUT"
+    - name: Install Wine Dependencies for Ubuntu 24.04
+      if: runner.os == 'Linux' && steps.osinfo.outputs.version_id == '24.04'
+      run: |
+        sudo apt clean
+        sudo rm -rf /var/lib/apt/lists/*
+        sudo apt update
+        sudo apt install p7zip-full curl
+        sudo dpkg --add-architecture i386 
+        sudo mkdir -pm755 /etc/apt/keyrings
+        sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+        sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-noble.sources
+        sudo apt update && sudo apt install --install-recommends winehq-stable
+        echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
+        sudo apt install -y ttf-mscorefonts-installer
+        sudo fc-cache
+        fc-match Arial
+        wine --version
+        which wine        
+        echo "WINEPREFIX=/home/runner/.winemonogame" >> $GITHUB_ENV
+    - name: Install Wine Dependencies for Ubuntu 22.04
+      if: runner.os == 'Linux' && steps.osinfo.outputs.version_id == '22.04'
       run: |
         sudo apt clean
         sudo rm -rf /var/lib/apt/lists/*
