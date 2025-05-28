@@ -28,6 +28,8 @@ runs:
     - name: Install Wine using FlatPack
       if: runner.os == 'Linux'
       run: |
+        sudo apt install flatpak
+        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
         flatpak run --command=winetricks org.winehq.Wine
         wine --version
         which wine  
