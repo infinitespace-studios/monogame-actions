@@ -7,8 +7,20 @@ on:
       - '.github/workflows/main.yml'
 
 jobs:
-  test:
-    runs-on: ubuntu-22.04
+  test_linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Wine
+        uses: ./install-wine
+  test_mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Wine
+        uses: ./install-wine
+  test_windows:
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
       - name: Install Wine
