@@ -25,15 +25,6 @@ runs:
         echo "VERSION_ID=$VERSION_ID"
         echo "version_id=$VERSION_ID" >> "$GITHUB_OUTPUT"
       shell: bash
-    - name: Install Wine using FlatPack
-      if: runner.os == 'Linux'
-      run: |
-        sudo apt install flatpak
-        sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-        sudo flatpak run --command=winetricks org.winehq.Wine
-        wine --version
-        which wine  
-      shell: bash
     - name: Install Wine Dependencies for Ubuntu 24.04
       if: runner.os == 'Linux' && steps.osinfo.outputs.version_id == '24.04'
       run: |
