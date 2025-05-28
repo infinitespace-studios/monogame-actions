@@ -15,9 +15,6 @@ runs:
         xattr -dr com.apple.quarantine "/Applications/Wine Stable.app"
         wine --version
         which wine
-        wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
-        export WINEPREFIX=/Users/runner/.winemonogame
-        wine dotnet --info
         echo "WINEPREFIX=/Users/runner/.winemonogame" >> $GITHUB_ENV
       shell: bash
     - name: Install Wine Dependencies for Linux
@@ -37,9 +34,12 @@ runs:
         sudo fc-cache
         fc-match Arial
         wine --version
-        which wine
-        wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
-        export WINEPREFIX=/home/runner/.winemonogame
-        wine dotnet --info
+        which wine        
         echo "WINEPREFIX=/home/runner/.winemonogame" >> $GITHUB_ENV
+      shell: bash
+    - name: Install Dotnet in Wine
+      run: |
+        echo $GITHUB_ENV
+        wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
+        wine dotnet --info
       shell: bash
