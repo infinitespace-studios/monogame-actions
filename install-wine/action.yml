@@ -23,6 +23,7 @@ runs:
         source /etc/os-release
         echo "VERSION_ID=$VERSION_ID"
         echo "version_id=$VERSION_ID" >> "$GITHUB_OUTPUT"
+      shell: bash
     - name: Install Wine Dependencies for Ubuntu 24.04
       if: runner.os == 'Linux' && steps.osinfo.outputs.version_id == '24.04'
       run: |
@@ -42,6 +43,7 @@ runs:
         wine --version
         which wine        
         echo "WINEPREFIX=/home/runner/.winemonogame" >> $GITHUB_ENV
+      shell: bash
     - name: Install Wine Dependencies for Ubuntu 22.04
       if: runner.os == 'Linux' && steps.osinfo.outputs.version_id == '22.04'
       run: |
