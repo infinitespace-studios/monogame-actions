@@ -1,11 +1,6 @@
 name: 'Install Wine'
 description: 'Installs wine on the githib action bot.'
 author: 'infinitespace-studios'
-inputs:
-  wineprefix:
-    description: 'The prefix to use for wine'
-    required: false
-    default: '$HOME/.winemonogame'
 runs:
   using: "composite"
   steps:
@@ -18,8 +13,9 @@ runs:
         wine --version
         which wine
         wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
-        export WINEPREFIX=${{ inputs.wineprefix }}
+        export WINEPREFIX=/Users/runner/.winemonogame
         wine dotnet --info
+        echo "WINEPREFIX=/Users/runner/.winemonogame" >> $GITHUB_ENV
       shell: bash
     - name: Install Wine Dependencies for Linux
       if: runner.os == 'Linux'
@@ -37,9 +33,7 @@ runs:
         wine --version
         which wine
         wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
-        export WINEPREFIX=${{ inputs.wineprefix }}
+        export WINEPREFIX=
         wine dotnet --info
-      shell: bash
-    - name: export prefix
-      run: echo "WINEPREFIX=${{ inputs.wineprefix }}" >> $GITHUB_ENV
+        echo "WINEPREFIX=/home/runner/.winemonogame" >> $GITHUB_ENV
       shell: bash
