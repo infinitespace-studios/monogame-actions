@@ -8,10 +8,10 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: [ubuntu-latest, macos-latest]
     steps:
       - uses: actions/checkout@v4
       - name: Install Wine
         uses: ./install-wine
         with:
-          wineprefix: $HOME/.winemonogame
+          wineprefix: ${{ env.HOME }}/.winemonogame
