@@ -38,6 +38,7 @@ runs:
         echo "WINEPREFIX=/home/runner/.winemonogame" >> $GITHUB_ENV
       shell: bash
     - name: Install Dotnet in Wine
+      if: runner.os != 'Windows'
       run: |
         echo $GITHUB_ENV
         wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
