@@ -14,4 +14,4 @@ jobs:
       - name: Run my action
         uses: ./install-wine
         with:
-          wine-prefix: $HOME/.winemonogame
+          wineprefix: $HOME/.winemonogame
