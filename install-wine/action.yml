@@ -4,7 +4,8 @@ author: 'infinitespace-studios'
 inputs:
   wineprefix:
     description: 'The prefix to use for wine'
-    required: true
+    required: false
+    default: '$HOME/.winemonogame'
 runs:
   using: "composite"
   steps:
