@@ -5,7 +5,7 @@ inputs:
   wineprefix:
     description: 'The prefix to use for wine'
     required: false
-    default: '$HOME/.winemonogame'
+    default: '${{ env.HOME }}/.winemonogame'
 runs:
   using: "composite"
   steps:
@@ -39,4 +39,7 @@ runs:
         wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
         export WINEPREFIX=${{ inputs.wineprefix }}
         wine dotnet --info
+      shell: bash
+    - name: export prefix
+      run: echo "WINEPREFIX=${{ inputs.wineprefix }}" >> $GITHUB_ENV
       shell: bash
