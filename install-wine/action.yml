@@ -72,12 +72,7 @@ runs:
         wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
       shell: bash
     - name: Setup Environment
-      if: runner.os == 'macOS'
-      run: echo "WINEPREFIX=/Users/runner/.winemonogame" >> $GITHUB_ENV
-      shell: bash
-    - name: Setup Environment
-      if: runner.os == 'Linux'
-      run: echo "WINEPREFIX=/home/runner/.winemonogame" >> $GITHUB_ENV
+      run: echo "WINEPREFIX=$HOME/.winemonogame" >> $GITHUB_ENV
       shell: bash
     - name: Test Dotnet is installed
       if: runner.os != 'Windows'
