@@ -78,6 +78,6 @@ runs:
     - name: Test Dotnet is installed
       if: runner.os != 'Windows'
       run: |
-        find ${{ env.WINEPREFIX }} | grep dotnet
-        wine dotnet --info
+        find ${{ env.WINEPREFIX }} | grep dotnet.exe
+        WINEPREFIX=${{ env.WINEPREFIX }} wine dotnet --info
       shell: bash
