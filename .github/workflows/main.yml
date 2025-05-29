@@ -8,7 +8,13 @@ on:
 
 jobs:
   test_linux:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Wine
+        uses: ./install-wine
+  test_linux_22_04:
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
       - name: Install Wine
