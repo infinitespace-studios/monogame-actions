@@ -74,5 +74,10 @@ runs:
       run: |
         echo $GITHUB_ENV
         wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
+      shell: bash
+    - name: Test Dotnet is installed
+      if: runner.os != 'Windows'
+      run: |
+        find ${{ env.WINEPREFIX }} | grep dotnet
         wine dotnet --info
       shell: bash
