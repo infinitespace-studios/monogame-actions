@@ -23,12 +23,15 @@ runs:
       shell: bash
     - name: Select Wine Source
       id: osversion
-      if: runner.os == 'Linux' && steps.osinfo.outputs.version_id == '24.04'
-      run: echo "winesource=noble" >> "$GITHUB_OUTPUT"
-    - name: Select Wine Source
-      id: osversion
-      if: runner.os == 'Linux' && steps.osinfo.outputs.version_id == '22.04'
-      run: echo "winesource=jammy" >> "$GITHUB_OUTPUT"
+      if: runner.os == 'Linux'
+      run: |
+        source /etc/os-release
+        if [ "$VERSION" = "24.04" ]; then
+          echo "winesource=noble" >> "$GITHUB_OUTPUT"
+        else
+          echo "winesource=jammy" >> "$GITHUB_OUTPUT"
+        fi
+      shell: bash
     - name: Install Wine Dependencies for Ubuntu
       if: runner.os == 'Linux'
       run: |
