@@ -21,29 +21,16 @@ runs:
         echo "VERSION_ID=$VERSION_ID"
         echo "version_id=$VERSION_ID" >> "$GITHUB_OUTPUT"
       shell: bash
-    - name: Install Wine Dependencies for Ubuntu 24.04
+    - name: Select Wine Source
+      id: osversion
       if: runner.os == 'Linux' && steps.osinfo.outputs.version_id == '24.04'
-      run: |
-        sudo apt clean
-        sudo rm -rf /var/lib/apt/lists/*
-        sudo apt update
-        sudo apt install p7zip-full curl
-        sudo dpkg --add-architecture i386 
-        sudo mkdir -pm755 /etc/apt/keyrings
-        sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
-        sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/noble/winehq-noble.sources
-        sudo apt update
-        sudo apt-cache policy winehq-stable
-        sudo apt install --install-recommends winehq-stable
-        echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
-        sudo apt install -y ttf-mscorefonts-installer
-        sudo fc-cache
-        fc-match Arial
-        wine --version
-        which wine        
-      shell: bash
-    - name: Install Wine Dependencies for Ubuntu 22.04
+      run: echo "winesource=noble" >> "$GITHUB_OUTPUT"
+    - name: Select Wine Source
+      id: osversion
       if: runner.os == 'Linux' && steps.osinfo.outputs.version_id == '22.04'
+      run: echo "winesource=jammy" >> "$GITHUB_OUTPUT"
+    - name: Install Wine Dependencies for Ubuntu
+      if: runner.os == 'Linux'
       run: |
         sudo apt clean
         sudo rm -rf /var/lib/apt/lists/*
@@ -52,7 +39,7 @@ runs:
         sudo dpkg --add-architecture i386 
         sudo mkdir -pm755 /etc/apt/keyrings
         sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
-        sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources
+        sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/${{ steps.osversion.outputs.winesource }}/winehq-${{ steps.osversion.outputs.winesource }}.sources
         sudo apt update
         sudo apt-cache policy winehq-stable
         sudo apt install --install-recommends winehq-stable
