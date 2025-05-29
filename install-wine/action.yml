@@ -74,9 +74,11 @@ runs:
     - name: Setup Environment
       if: runner.os == 'macOS'
       run: echo "WINEPREFIX=/Users/runner/.winemonogame" >> $GITHUB_ENV
+      shell: bash
     - name: Setup Environment
       if: runner.os == 'Linux'
       run: echo "WINEPREFIX=/home/runner/.winemonogame" >> $GITHUB_ENV
+      shell: bash
     - name: Test Dotnet is installed
       if: runner.os != 'Windows'
       run: |
