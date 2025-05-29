@@ -4,9 +4,6 @@ author: 'infinitespace-studios'
 runs:
   using: "composite"
   steps:
-    - name: Info
-      run: pwd
-      shell: bash
     - name: Install Wine Dependencies for MacOS
       if: runner.os == 'macOS'
       run: |
@@ -72,11 +69,12 @@ runs:
         wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
       shell: bash
     - name: Setup Environment
+      if: runner.os != 'Windows'
       run: |
         echo "WINEPREFIX=$HOME/.winemonogame" >> $GITHUB_ENV
         echo "WINEARCH=win64" >> $GITHUB_ENV
         echo "WINEDEBUG=-all" >> $GITHUB_ENV
-        echi "WINEDLLOVERRIDES=d3dcompiler_47=n" >> $GITHUB_ENV
+        echo "WINEDLLOVERRIDES=d3dcompiler_47=n" >> $GITHUB_ENV
       shell: bash
     - name: Test Dotnet is installed
       if: runner.os != 'Windows'
