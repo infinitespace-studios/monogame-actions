@@ -86,3 +86,5 @@ runs:
         find ${{ env.WINEPREFIX }} | grep dotnet.exe
         wine dotnet --info
       shell: bash
+      env:
+        WINEDEBUG: "-all"
