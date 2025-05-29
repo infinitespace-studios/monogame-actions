@@ -45,7 +45,6 @@ runs:
         fc-match Arial
         wine --version
         which wine        
-        echo "WINEPREFIX=/home/runner/.winemonogame" >> $GITHUB_ENV
       shell: bash
     - name: Install Wine Dependencies for Ubuntu 22.04
       if: runner.os == 'Linux' && steps.osinfo.outputs.version_id == '22.04'
@@ -67,17 +66,17 @@ runs:
         fc-match Arial
         wine --version
         which wine        
-        echo "WINEPREFIX=/home/runner/.winemonogame" >> $GITHUB_ENV
       shell: bash
     - name: Install Dotnet in Wine
       if: runner.os != 'Windows'
       run: |
-        echo $GITHUB_ENV
         wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
+        echo "WINEPREFIX=/home/runner/.winemonogame" >> $GITHUB_ENV
       shell: bash
     - name: Test Dotnet is installed
       if: runner.os != 'Windows'
       run: |
+        echo $GITHUB_ENV
         find ${{ env.WINEPREFIX }} | grep dotnet.exe
-        WINEPREFIX=${{ env.WINEPREFIX }} wine dotnet --info
+        wine dotnet --info
       shell: bash
