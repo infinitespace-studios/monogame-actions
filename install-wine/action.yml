@@ -26,7 +26,7 @@ runs:
       if: runner.os == 'Linux'
       run: |
         source /etc/os-release
-        if [ "$VERSION" = "24.04" ]; then
+        if [ "$VERSION_ID" = "24.04" ]; then
           echo "winesource=noble" >> "$GITHUB_OUTPUT"
         else
           echo "winesource=jammy" >> "$GITHUB_OUTPUT"
