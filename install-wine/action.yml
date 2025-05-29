@@ -15,7 +15,6 @@ runs:
         xattr -dr com.apple.quarantine "/Applications/Wine Stable.app"
         wine --version
         which wine
-        echo "WINEPREFIX=/Users/runner/.winemonogame" >> $GITHUB_ENV
       shell: bash
     - name: Get Ubuntu version
       if: runner.os == 'Linux' 
@@ -71,8 +70,13 @@ runs:
       if: runner.os != 'Windows'
       run: |
         wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
-        echo "WINEPREFIX=/home/runner/.winemonogame" >> $GITHUB_ENV
       shell: bash
+    - name: Setup Environment
+      if: runner.os == 'macOS'
+      run: echo "WINEPREFIX=/Users/runner/.winemonogame" >> $GITHUB_ENV
+    - name: Setup Environment
+      if: runner.os == 'Linux'
+      run: echo "WINEPREFIX=/home/runner/.winemonogame" >> $GITHUB_ENV
     - name: Test Dotnet is installed
       if: runner.os != 'Windows'
       run: |
