@@ -84,7 +84,7 @@ runs:
       run: |
         echo $GITHUB_ENV
         find ${{ env.WINEPREFIX }} | grep dotnet.exe
-        wine dotnet --info
+        wine dotnet.exe --info
       shell: bash
       env:
         WINEDEBUG: "-all"
