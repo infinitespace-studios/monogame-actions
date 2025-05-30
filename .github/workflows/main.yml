@@ -15,7 +15,6 @@ jobs:
         uses: ./install-wine
       - name: Test Dotnet is installed
         run: |
-          wine where dotnet.exe
           WINEPREFIX=${{ env.WINEPREFIX }} wine where dotnet.exe
           WINEPREFIX=${{ env.WINEPREFIX }} wine dotnet.exe --info
         shell: bash
