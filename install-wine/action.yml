@@ -46,12 +46,16 @@ runs:
         sudo apt update
         sudo apt-cache policy winehq-stable
         sudo apt install --install-recommends winehq-stable
+        wine --version
+        which wine        
+      shell: bash
+    - nane: Install Fonts
+      if: runner.os == 'Linux'
+      run: |
         echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
         sudo apt install -y ttf-mscorefonts-installer
         sudo fc-cache
         fc-match Arial
-        wine --version
-        which wine        
       shell: bash
     - name: Install Dotnet in Wine
       if: runner.os != 'Windows'
@@ -65,10 +69,4 @@ runs:
         echo "WINEARCH=win64" >> $GITHUB_ENV
         echo "WINEDEBUG=-all" >> $GITHUB_ENV
         echo "WINEDLLOVERRIDES=d3dcompiler_47=n" >> $GITHUB_ENV
-      shell: bash
-    - name: Test Dotnet is installed
-      if: runner.os != 'Windows'
-      run: |
-        find ${{ env.WINEPREFIX }} | grep dotnet.exe
-        wine dotnet.exe --info
       shell: bash
