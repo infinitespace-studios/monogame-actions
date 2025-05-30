@@ -16,8 +16,6 @@ jobs:
       - name: Test Dotnet is installed
         run: |
           WINEPREFIX=${{ env.WINEPREFIX }} wine where notepad.exe
-          WINEPREFIX=${{ env.WINEPREFIX }} winepath C:\
-          mkdir -p "${{ env.WINEPREFIX }}/drive_c/pathcheck"
           echo "echo %PATH%" > "${{ env.WINEPREFIX }}/drive_c/windows/showpath.bat"
           WINEPREFIX=${{ env.WINEPREFIX }} wine cmd /c C:\\windows\\showpath.bat
         shell: bash
@@ -25,7 +23,7 @@ jobs:
         run: |
           wine where notepad.exe
           winepath C:\
-          wine cmd /c echo %PATH%
+          wine cmd /c C:\\windows\\showpath.bat
         shell: bash
       # - name: Test Dotnet is installed
       #   run: |
