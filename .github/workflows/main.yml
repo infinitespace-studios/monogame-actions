@@ -15,8 +15,9 @@ jobs:
         uses: ./install-wine
       - name: Test Dotnet is installed
         run: |
-          find ${{ env.WINEPREFIX }} | grep dotnet.exe
-          wine dotnet.exe --info
+          wine find dotnet.exe
+          WINEPREFIX=${{ env.WINEPREFIX }} wine find dotnet.exe
+          WINEPREFIX=${{ env.WINEPREFIX }} wine dotnet.exe --info
         shell: bash
   test_linux_22_04:
     runs-on: ubuntu-22.04
