@@ -71,7 +71,7 @@ runs:
         echo "WINEDLLOVERRIDES=d3dcompiler_47=n" >> $GITHUB_ENV
       shell: bash
     - name: Reset Wine Config
-      if: runner.os != 'Windows
+      if: runner.os != 'Windows'
       run: |
         wineboot
       shell: bash
