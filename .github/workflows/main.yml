@@ -17,7 +17,9 @@ jobs:
         run: |
           WINEPREFIX=${{ env.WINEPREFIX }} wine where notepad.exe
           WINEPREFIX=${{ env.WINEPREFIX }} winepath C:\
-          WINEPREFIX=${{ env.WINEPREFIX }} wine cmd /c "echo %PATH%"
+          mkdir -p "${{ env.WINEPREFIX }}/drive_c/pathcheck"
+          echo "echo %PATH%" > "${{ env.WINEPREFIX }}/drive_c/windows/showpath.bat"
+          WINEPREFIX=${{ env.WINEPREFIX }} wine cmd /c C:\\windows\\showpath.bat
         shell: bash
       - name: check envar works
         run: |
