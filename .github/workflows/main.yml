@@ -15,6 +15,11 @@ jobs:
         uses: ./install-wine
       - name: Test Dotnet is installed
         run: |
+          WINEPREFIX=${{ env.WINEPREFIX }} wine where notepad.exe
+          WINEPREFIX=${{ env.WINEPREFIX }} winepath C:\
+        shell: bash
+      - name: Test Dotnet is installed
+        run: |
           WINEPREFIX=${{ env.WINEPREFIX }} wine where dotnet.exe
           WINEPREFIX=${{ env.WINEPREFIX }} wine dotnet.exe --info
         shell: bash
