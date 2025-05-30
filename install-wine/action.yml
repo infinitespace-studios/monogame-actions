@@ -49,7 +49,7 @@ runs:
         wine --version
         which wine        
       shell: bash
-    - nane: Install Fonts
+    - name: Install Fonts
       if: runner.os == 'Linux'
       run: |
         echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
