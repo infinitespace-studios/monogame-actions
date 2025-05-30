@@ -23,7 +23,7 @@ jobs:
         run: |
           wine where notepad.exe
           wine cmd /c C:\\windows\\showpath.bat
-          wine cmd /c C:\\windows\\system32\\dotnet.exe --info
+          wine cmd /c C:\\windows\\system32\\dotnet.exe
         shell: bash
       # - name: Test Dotnet is installed
       #   run: |
