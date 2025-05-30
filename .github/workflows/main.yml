@@ -17,7 +17,7 @@ jobs:
         run: |
           WINEPREFIX=${{ env.WINEPREFIX }} wine where notepad.exe
           WINEPREFIX=${{ env.WINEPREFIX }} winepath C:\
-          WINEPREFIX=${{ env.WINEPREFIX }} wine cmd /c echo %PATH%
+          WINEPREFIX=${{ env.WINEPREFIX }} wine cmd /c "echo %PATH%"
         shell: bash
       - name: check envar works
         run: |
