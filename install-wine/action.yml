@@ -10,8 +10,9 @@ runs:
         brew install libpng libjpeg libtiff
         brew install --cask xquartz wine-stable
         xattr -dr com.apple.quarantine "/Applications/Wine Stable.app"
-        wine --version
-        which wine
+        sudo ln -s /opt/homebrew/bin/wine /usr/bin/wine64
+        wine64 --version
+        which wine64
       shell: bash
     - name: Get Ubuntu version
       if: runner.os == 'Linux' 
@@ -46,8 +47,8 @@ runs:
         sudo apt update
         sudo apt-cache policy winehq-stable
         sudo apt install --install-recommends winehq-stable
-        wine --version
-        which wine        
+        wine64 --version
+        which wine64        
       shell: bash
     - name: Install Fonts
       if: runner.os == 'Linux'
@@ -75,10 +76,4 @@ runs:
       if: runner.os != 'Windows'
       run: |
         wineboot -u -i
-      shell: bash
-    - name: Manual Dotnet install
-      if: runner.os == 'Linux'
-      run: |
-        find "${{ env.WINEPREFIX }}" | grep dotnet.exe
-        file ${{ env.WINEPREFIX }}/drive_c/windows/system32/dotnet.exe
       shell: bash
