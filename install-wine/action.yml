@@ -10,9 +10,6 @@ runs:
         brew install libpng libjpeg libtiff
         brew install --cask xquartz wine-stable
         xattr -dr com.apple.quarantine "/Applications/Wine Stable.app"
-        sudo ln -s /opt/homebrew/bin/wine /opt/homebrew/bin/wine64
-        wine64 --version
-        which wine64
       shell: bash
     - name: Get Ubuntu version
       if: runner.os == 'Linux' 
@@ -46,9 +43,7 @@ runs:
         sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/${{ steps.osversion.outputs.winesource }}/winehq-${{ steps.osversion.outputs.winesource }}.sources
         sudo apt update
         sudo apt-cache policy winehq-stable
-        sudo apt install --install-recommends winehq-stable
-        wine64 --version
-        which wine64        
+        sudo apt install --install-recommends winehq-stable      
       shell: bash
     - name: Install Fonts
       if: runner.os == 'Linux'
@@ -62,6 +57,7 @@ runs:
       if: runner.os != 'Windows'
       run: |
         wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
+        echo "$HOME/.winemonogame" >> "$GITHUB_PATH"
       shell: bash
     - name: Setup Environment
       if: runner.os != 'Windows'
