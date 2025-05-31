@@ -71,9 +71,10 @@ runs:
         echo "WINEDEBUG=-all" >> $GITHUB_ENV
         echo "MVK_CONFIG_LOG_LEVEL=0" >> $GITHUB_ENV
         echo "WINEDLLOVERRIDES=d3dcompiler_47=d,explorer.exe=e,services.exe=f" >> $GITHUB_ENV
+        echo "WINEEXE=$(which wine64)" >> "$GITHUB_ENV"
       shell: bash
-    - name: Reset Wine Config
+    - name: Wine Version
       if: runner.os != 'Windows'
       run: |
-        wineboot -u -i
+        ${{ env.WINEEXE }} --version
       shell: bash
