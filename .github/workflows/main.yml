@@ -13,6 +13,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install Wine
         uses: ./install-wine
+      - name: Install Font
+        uses: ./install-fonts
       - name: check envar works
         run: |
           ${{ env.WINEEXE }} dotnet --info
@@ -23,6 +25,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install Wine
         uses: ./install-wine
+      - name: Install Font
+        uses: ./install-fonts
       - name: Test Dotnet is installed
         run: |
           ${{ env.WINEEXE }} dotnet.exe --info
@@ -33,6 +37,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install Wine
         uses: ./install-wine
+      - name: Install Font
+        uses: ./install-fonts
       - name: Test Dotnet is installed
         run: |
           ${{ env.WINEEXE }} dotnet.exe --info
@@ -43,3 +49,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install Wine
         uses: ./install-wine
+      - name: Install Font
+        uses: ./install-fonts
