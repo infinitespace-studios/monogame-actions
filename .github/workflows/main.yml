@@ -15,15 +15,15 @@ jobs:
         uses: ./install-wine
       - name: Test Dotnet is installed
         run: |
-          WINEPREFIX=${{ env.WINEPREFIX }} wineconsole where notepad.exe
+          WINEPREFIX=${{ env.WINEPREFIX }} wine where notepad.exe
           echo "echo %PATH%" > "${{ env.WINEPREFIX }}/drive_c/windows/showpath.bat"
-          WINEPREFIX=${{ env.WINEPREFIX }} wineconsole cmd /c C:\\windows\\showpath.bat
+          WINEPREFIX=${{ env.WINEPREFIX }} wine cmd /c C:\\windows\\showpath.bat
         shell: bash
       - name: check envar works
         run: |
-          wineconsole where notepad.exe
-          wineconsole cmd /c C:\\windows\\showpath.bat
-          wineconsole cmd /c C:\\windows\\system32\\dotnet.exe
+          wine where notepad.exe
+          wine cmd /c C:\\windows\\showpath.bat
+          wine cmd /c C:\\windows\\system32\\dotnet.exe
         shell: bash
       # - name: Test Dotnet is installed
       #   run: |
