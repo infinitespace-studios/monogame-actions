@@ -78,6 +78,6 @@ runs:
     - name: Manual Dotnet install
       if: runner.os == 'Linux'
       run: |
-        find "${{ env.WINEPREFIX }} | grep dotnet.exe
+        find "${{ env.WINEPREFIX }}" | grep dotnet.exe
         file ${{ env.WINEPREFIX }}/drive_c/windows/system32/dotnet.exe
       shell: bash
