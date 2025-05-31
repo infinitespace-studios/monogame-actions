@@ -15,7 +15,7 @@ jobs:
         uses: ./install-wine
       - name: check envar works
         run: |
-          wine64 dotnet --info
+          ${{ env.WINEEXE }} dotnet --info
         shell: bash
   test_linux_22_04:
     runs-on: ubuntu-22.04
@@ -25,7 +25,7 @@ jobs:
         uses: ./install-wine
       - name: Test Dotnet is installed
         run: |
-          wine64 dotnet.exe --info
+          ${{ env.WINEEXE }} dotnet.exe --info
         shell: bash
   test_mac:
     runs-on: macos-latest
@@ -36,7 +36,7 @@ jobs:
       - name: Test Dotnet is installed
         run: |
           find ${{ env.WINEPREFIX }} | grep dotnet.exe
-          wine64 dotnet.exe --info
+          ${{ env.WINEEXE }} dotnet.exe --info
         shell: bash
   test_windows:
     runs-on: windows-latest
