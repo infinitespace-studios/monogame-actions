@@ -68,9 +68,7 @@ runs:
         echo "WINEPREFIX=$HOME/.winemonogame" >> $GITHUB_ENV
         echo "WINEARCH=win64" >> $GITHUB_ENV
         echo "WINEDEBUG=-all" >> $GITHUB_ENV
-        echo "DXVK_HUD=none" >> $GITHUB_ENV                                      
-        echo "DXVK_LOG_LEVEL=none" >> $GITHUB_ENV
-        echo "VK_LOADER_DEBUG=none" >> $GITHUB_ENV
+        echo "MVK_CONFIG_LOG_LEVEL=0" >> $GITHUB_ENV
         echo "WINEDLLOVERRIDES=d3dcompiler_47=d,explorer.exe=e,services.exe=f" >> $GITHUB_ENV
       shell: bash
     - name: Reset Wine Config
