@@ -73,7 +73,7 @@ runs:
     - name: Reset Wine Config
       if: runner.os != 'Windows'
       run: |
-        wineboot
+        wineboot -u
       shell: bash
     - name: Manual Dotnet install
       if: runner.os == 'Linux'
@@ -81,4 +81,5 @@ runs:
         cd "${{ env.WINEPREFIX }}/drive_c/windows/system32/"
         pwd
         ls -la
+        file ${{ env.WINEPREFIX }}/drive_c/windows/system32/dotnet.exe
       shell: bash
