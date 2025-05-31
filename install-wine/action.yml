@@ -10,7 +10,7 @@ runs:
         brew install libpng libjpeg libtiff
         brew install --cask xquartz wine-stable
         xattr -dr com.apple.quarantine "/Applications/Wine Stable.app"
-        sudo ln -s /opt/homebrew/bin/wine /usr/bin/wine64
+        sudo ln -s /opt/homebrew/bin/wine /opt/homebrew/bin/wine64
         wine64 --version
         which wine64
       shell: bash
