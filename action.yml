@@ -4,5 +4,7 @@ author: 'infinitespace-studios'
 runs:
   using: "composite"
   steps:
-    - uses: ./install-fonts
-    - uses: ./install-wine
+    - name: Install Fonts
+      uses: ./install-fonts
+    - name: Install Wine
+      uses: ./install-wine
