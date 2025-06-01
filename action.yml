@@ -1,1 +1,8 @@
-name: monogame-actions
+name: Setup for MonoGame
+description: 'Installs the required dependencies to build MonoGame applications'
+author: 'infinitespace-studios'
+runs:
+  using: "composite"
+  steps:
+    - uses: ./install-fonts
+    - uses: ./install-wine
