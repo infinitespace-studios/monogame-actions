@@ -40,21 +40,21 @@ runs:
     - name: Install Butler
       if: runner.os == 'Linux'
       run: |
-        curl -L https://broth.itch.ovh/butler/linux-amd64/latest/download | tar xzv
+        curl -L https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default | tar xzv
         chmod +x butler
         echo "PATH=${GITHUB_WORKSPACE}/butler:${PATH}" >> ${GITHUB_ENV}
       shell: bash
     - name: Install Butler
       if: runner.os == 'macos'
       run: |
-        curl -L https://broth.itch.ovh/butler/macos-amd64/latest/download | tar xzv
+        curl -L https://broth.itch.ovh/butler/macos-amd64/LATEST/archive/default | tar xzv
         chmod +x butler
         echo "PATH=${GITHUB_WORKSPACE}/butler:${PATH}" >> ${GITHUB_ENV}
       shell: bash
     - name: Install Butler
       if: runner.os == 'Windows'
       run: |
-        curl -L https://broth.itch.ovh/butler/windows-amd64/latest/download -o butler.zip
+        curl -L https://broth.itch.ovh/butler/windows-amd64/LATEST/archive/default -o butler.zip
         unzip butler.zip
         echo "PATH=${GITHUB_WORKSPACE}/butler:${PATH}" >> ${GITHUB_ENV}
       shell: bash
