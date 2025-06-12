@@ -19,7 +19,7 @@ jobs:
         uses: ./publish-itchio
         with:
           channel: 'ubuntu'
-          file: '${GITHUB_WORKSPACE}/REAMDE.md'
+          file: 'butler.zip'
           version: '1.0.0'
           ITCHIO_USER: ${{ secrets.ITCHIO_USER }}
           ITCHIO_GAME: ${{ secrets.ITCHIO_GAME }}
@@ -40,7 +40,7 @@ jobs:
         uses: ./publish-itchio
         with:
           channel: 'ubuntu'
-          file: '${GITHUB_WORKSPACE}/REAMDE.md'
+          file: 'butler.zip'
           version: '1.0.0'
           ITCHIO_USER: ${{ secrets.ITCHIO_USER }}
           ITCHIO_GAME: ${{ secrets.ITCHIO_GAME }}
@@ -61,7 +61,7 @@ jobs:
         uses: ./publish-itchio
         with:
           channel: 'osx'
-          file: '${GITHUB_WORKSPACE}/REAMDE.md'
+          file: 'butler.zip'
           version: '1.0.0'
           ITCHIO_USER: ${{ secrets.ITCHIO_USER }}
           ITCHIO_GAME: ${{ secrets.ITCHIO_GAME }}
@@ -82,7 +82,7 @@ jobs:
         uses: ./publish-itchio
         with:
           channel: 'windows'
-          file: '${GITHUB_WORKSPACE}/REAMDE.md'
+          file: 'butler.zip'
           version: '1.0.0'
           ITCHIO_USER: ${{ secrets.ITCHIO_USER }}
           ITCHIO_GAME: ${{ secrets.ITCHIO_GAME }}
