@@ -47,7 +47,7 @@ runs:
     - name: Install Butler
       if: runner.os == 'macos'
       run: |
-        curl -L https://broth.itch.ovh/butler/macos-amd64/LATEST/archive/default | tar xzv
+        curl -L https://broth.itch.ovh/butler/darwin-amd64/LATEST/archive/default | tar xzv
         chmod +x butler
         echo "PATH=${GITHUB_WORKSPACE}/butler:${PATH}" >> ${GITHUB_ENV}
       shell: bash
