@@ -18,10 +18,12 @@ jobs:
       - name: Publish Game to itch.io
         uses: ./publish-itchio
         with:
-          game_id: '123456'
           channel: 'ubuntu'
-          file: 'path/to/game.zip'
+          file: 'REAMDE.md'
           version: '1.0.0'
+          ITCHIO_USER: ${{ secrets.ITCHIO_USER }}
+          ITCHIO_GAME: ${{ secrets.ITCHIO_GAME }}
+          ITCHIO_TOKEN: ${{ secrets.ITCHIO_TOKEN }}
       - name: check envar works
         run: |
           ${{ env.WINEEXE }} dotnet --info
@@ -37,10 +39,12 @@ jobs:
       - name: Publish Game to itch.io
         uses: ./publish-itchio
         with:
-          game_id: '123456'
           channel: 'ubuntu'
-          file: 'path/to/game.zip'
+          file: 'REAMDE.md'
           version: '1.0.0'
+          ITCHIO_USER: ${{ secrets.ITCHIO_USER }}
+          ITCHIO_GAME: ${{ secrets.ITCHIO_GAME }}
+          ITCHIO_TOKEN: ${{ secrets.ITCHIO_TOKEN }}
       - name: Test Dotnet is installed
         run: |
           ${{ env.WINEEXE }} dotnet.exe --info
@@ -56,10 +60,12 @@ jobs:
       - name: Publish Game to itch.io
         uses: ./publish-itchio
         with:
-          game_id: '123456'
           channel: 'osx'
-          file: 'path/to/game.zip'
+          file: 'REAMDE.md'
           version: '1.0.0'
+          ITCHIO_USER: ${{ secrets.ITCHIO_USER }}
+          ITCHIO_GAME: ${{ secrets.ITCHIO_GAME }}
+          ITCHIO_TOKEN: ${{ secrets.ITCHIO_TOKEN }}
       - name: Test Dotnet is installed
         run: |
           ${{ env.WINEEXE }} dotnet.exe --info
@@ -75,7 +81,9 @@ jobs:
       - name: Publish Game to itch.io
         uses: ./publish-itchio
         with:
-          game_id: '123456'
           channel: 'windows'
-          file: 'path/to/game.zip'
+          file: 'REAMDE.md'
           version: ${{ github.ref_name }} 
+          ITCHIO_USER: ${{ secrets.ITCHIO_USER }}
+          ITCHIO_GAME: ${{ secrets.ITCHIO_GAME }}
+          ITCHIO_TOKEN: ${{ secrets.ITCHIO_TOKEN }}
