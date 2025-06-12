@@ -15,6 +15,18 @@ inputs:
   version:
     description: 'The version of the game to publish.'
     required: true
+  ITCHIO_USER:
+    description: 'Your itch.io username.'
+    required: true
+    default: "Please set this in the repository secrets as ITCHIO_USER. This is your itch.io username."
+  ITCHIO_GAME:
+    description: 'The name of your game on itch.io.'
+    default: 'Please set this in the repository secrets as ITCHIO_GAME. This is the name of your game on itch.io.'
+    required: true
+  ITCHIO_TOKEN:
+    description: 'Your itch.io API token.'
+    required: true
+    default: "Please set this in the repository secrets as ITCHIO_TOKEN. You can generate a token at https://itch.io/user/settings/api-keys"
 runs:
   using: "composite"
   steps:
@@ -48,7 +60,7 @@ runs:
       shell: bash
     - name: Publish
       run: |
-        butler push ${{ inputs.file }} ${{ secrets.ITCHIO_USER }}/${{ secrets.ITCHIO_GAME }}:${{ inputs.channel }}${{ inputs.tag }} --userversion ${{ inputs.version }} -v
+        butler push ${{ inputs.file }} ${{ inputs.ITCHIO_USER }}/${{ inputs.ITCHIO_GAME }}:${{ inputs.channel }}${{ inputs.tag }} --userversion ${{ inputs.version }} -v
       shell: bash
       env:
-        BUTLER_API_KEY: ${{ secrets.ITCHIO_TOKEN }}
+        BUTLER_API_KEY: ${{ inputs.ITCHIO_TOKEN }}
