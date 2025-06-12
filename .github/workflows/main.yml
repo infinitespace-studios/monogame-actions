@@ -15,6 +15,13 @@ jobs:
         uses: ./install-wine
       - name: Install Font
         uses: ./install-fonts
+      - name: Publish Game to itch.io
+        uses: ./publish-itchio
+        with:
+          game_id: '123456'
+          channel: 'ubuntu'
+          file: 'path/to/game.zip'
+          version: '1.0.0'
       - name: check envar works
         run: |
           ${{ env.WINEEXE }} dotnet --info
@@ -27,6 +34,13 @@ jobs:
         uses: ./install-wine
       - name: Install Font
         uses: ./install-fonts
+      - name: Publish Game to itch.io
+        uses: ./publish-itchio
+        with:
+          game_id: '123456'
+          channel: 'ubuntu'
+          file: 'path/to/game.zip'
+          version: '1.0.0'
       - name: Test Dotnet is installed
         run: |
           ${{ env.WINEEXE }} dotnet.exe --info
@@ -39,6 +53,13 @@ jobs:
         uses: ./install-wine
       - name: Install Font
         uses: ./install-fonts
+      - name: Publish Game to itch.io
+        uses: ./publish-itchio
+        with:
+          game_id: '123456'
+          channel: 'osx'
+          file: 'path/to/game.zip'
+          version: '1.0.0'
       - name: Test Dotnet is installed
         run: |
           ${{ env.WINEEXE }} dotnet.exe --info
@@ -51,3 +72,10 @@ jobs:
         uses: ./install-wine
       - name: Install Font
         uses: ./install-fonts
+      - name: Publish Game to itch.io
+        uses: ./publish-itchio
+        with:
+          game_id: '123456'
+          channel: 'windows'
+          file: 'path/to/game.zip'
+          version: ${{ github.ref_name }} 

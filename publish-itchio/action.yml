@@ -1,0 +1,54 @@
+name: 'Publish Game to itch.io'
+description: 'Publishes a game to itch.io.'
+author: 'infinitespace-studios'
+inputs:
+  channel:
+    description: 'The channel to publish to (e.g., "windows", "linux", "macos").'
+    required: true
+  tag:
+    description: 'The tag to use for the upload (e.g., "-latest", "-stable").'
+    required: false
+    default: 'latest'
+  file:
+    description: 'The path to the file to upload.'
+    required: true
+  version:
+    description: 'The version of the game to publish.'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Check Inputs
+      run: |
+        echo "Channel: ${{ inputs.channel }}"
+        echo "Tag: ${{ inputs.tag }}"
+        echo "File: ${{ inputs.file }}"
+        echo "Version: ${{ inputs.version }}"
+      shell: bash
+    - name: Install Butler
+      if: runner.os == 'Linux'
+      run: |
+        curl -L https://broth.itch.ovh/butler/linux-amd64/latest/download | tar xzv
+        chmod +x butler
+        echo "PATH=${GITHUB_WORKSPACE}/butler:${PATH}" >> ${GITHUB_ENV}
+      shell: bash
+    - name: Install Butler
+      if: runner.os == 'macos'
+      run: |
+        curl -L https://broth.itch.ovh/butler/macos-amd64/latest/download | tar xzv
+        chmod +x butler
+        echo "PATH=${GITHUB_WORKSPACE}/butler:${PATH}" >> ${GITHUB_ENV}
+      shell: bash
+    - name: Install Butler
+      if: runner.os == 'Windows'
+      run: |
+        curl -L https://broth.itch.ovh/butler/windows-amd64/latest/download -o butler.zip
+        unzip butler.zip
+        echo "PATH=${GITHUB_WORKSPACE}/butler:${PATH}" >> ${GITHUB_ENV}
+      shell: bash
+    - name: Publish
+      run: |
+        butler push ${{ inputs.file }} ${{ secrets.ITCHIO_USER }}/${{ secrets.ITCHIO_GAME }}:${{ inputs.channel }}${{ inputs.tag }} --userversion ${{ inputs.version }} -v
+      shell: bash
+      env:
+        BUTLER_API_KEY: ${{ secrets.ITCHIO_TOKEN }}
