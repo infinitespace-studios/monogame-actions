@@ -56,7 +56,7 @@ runs:
       shell: bash
     - name: Publish
       run: |
-        butler push ${{ inputs.file }} ${{ inputs.ITCHIO_USER }}/${{ inputs.ITCHIO_GAME }}:${{ inputs.channel }}${{ inputs.tag }} --userversion ${{ inputs.version }} -v
+        ./butler push ${{ inputs.file }} ${{ inputs.ITCHIO_USER }}/${{ inputs.ITCHIO_GAME }}:${{ inputs.channel }}${{ inputs.tag }} --userversion ${{ inputs.version }} -v
       shell: bash
       env:
         BUTLER_API_KEY: ${{ inputs.ITCHIO_TOKEN }}
