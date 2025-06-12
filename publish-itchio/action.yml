@@ -37,26 +37,22 @@ runs:
         echo "File: ${{ inputs.file }}"
         echo "Version: ${{ inputs.version }}"
       shell: bash
-    - name: Install Butler
-      if: runner.os == 'Linux'
+    - name: Install butler
       run: |
-        curl -L https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default | tar xzv
-        chmod +x butler
-        echo "PATH=${GITHUB_WORKSPACE}/butler:${PATH}" >> ${GITHUB_ENV}
-      shell: bash
-    - name: Install Butler
-      if: runner.os == 'macos'
-      run: |
-        curl -L https://broth.itch.ovh/butler/darwin-amd64/LATEST/archive/default | tar xzv
-        chmod +x butler
-        echo "PATH=${GITHUB_WORKSPACE}/butler:${PATH}" >> ${GITHUB_ENV}
-      shell: bash
-    - name: Install Butler
-      if: runner.os == 'Windows'
-      run: |
-        curl -L https://broth.itch.ovh/butler/windows-amd64/LATEST/archive/default -o butler.zip
-        unzip butler.zip
-        echo "PATH=${GITHUB_WORKSPACE}/butler:${PATH}" >> ${GITHUB_ENV}
+            if [ "$RUNNER_OS" == "Linux" ]; then
+                  curl -L https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default -o butler.zip
+                  7z x butler.zip
+                  ./butler version
+            elif [ "$RUNNER_OS" == "Windows" ]; then
+                  curl -L https://broth.itch.ovh/butler/windows-amd64/LATEST/archive/default -o butler.zip
+                  7z x butler.zip
+                  ./butler version
+            elif [ "$RUNNER_OS" == "macOS" ]; then
+                  curl -L https://broth.itch.ovh/butler/darwin-amd64/LATEST/archive/default -o butler.zip
+                  7z x butler.zip
+                  ./butler version
+            fi
+            echo "PATH=${GITHUB_WORKSPACE}/butler:${PATH}" >> ${GITHUB_ENV}
       shell: bash
     - name: Publish
       run: |
