@@ -73,7 +73,7 @@ jobs:
       - name: check Android SDL
         run: |
           echo $ANDROID_HOME
-          sdkmanager --version
+          $ANDROID_HOME/cmdline-tools/11.0/bin/sdkmanager --version
         shell: bash
         
   test_windows:
