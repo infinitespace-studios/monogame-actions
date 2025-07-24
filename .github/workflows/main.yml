@@ -70,6 +70,12 @@ jobs:
         run: |
           ${{ env.WINEEXE }} dotnet.exe --info
         shell: bash
+      - name: check Android SDL
+        run: |
+          echo $ANDROID_HOME
+          sdkmanager --version
+        shell: bash
+        
   test_windows:
     runs-on: windows-latest
     steps:
