@@ -70,10 +70,12 @@ jobs:
         run: |
           ${{ env.WINEEXE }} dotnet.exe --info
         shell: bash
-      - name: check Android SDL
+      - name: check Android SDK
         run: |
           echo $ANDROID_HOME
           find $ANDROID_HOME | grep sdkmanager
+          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --version
+          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-34" "platforms;android-35" "platform-tools" "build-tools;34.0.0" "emulator" "system-images;android-34;default;x86_64" "cmdline-tools;11.0"
         shell: bash
         
   test_windows:
