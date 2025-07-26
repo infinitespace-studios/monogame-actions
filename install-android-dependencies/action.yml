@@ -16,6 +16,5 @@ runs:
       if: runner.os == 'Windows'
       run: |
           echo $ANDROID_HOME
-          find $ANDROID_HOME
-          $ANDROID_HOME\\cmdline-tools\\latest\\bin\\sdkmanager.exe --version
+          $ANDROID_HOME\\cmdline-tools\\8.0\\bin\\sdkmanager.exe --version
       shell: bash
