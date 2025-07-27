@@ -27,5 +27,5 @@ runs:
           $targetDir = "$env:ANDROID_SDK_ROOT"
           Expand-Archive -Path "commandlinetools.zip" -DestinationPath $targetDir -Force
           $sdkManagerPath = "$env:ANDROID_SDK_ROOT\cmdline-tools\bin\sdkmanager.bat"
-          & $sdkManagerPath "platform-tools" "build-tools;34.0.0"
+          & $sdkManagerPath "platform-tools" "build-tools;34.0.0" "platforms;android-35" "platform-tools" "build-tools;34.0.0" "cmdline-tools;11.0" --sdk_root=$ANDROID_HOME
       shell: pwsh
