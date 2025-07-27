@@ -15,7 +15,8 @@ runs:
           echo $ANDROID_HOME
           find $ANDROID_HOME | grep sdkmanager
           $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --version
-          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-34" "platforms;android-35" "platform-tools" "build-tools;34.0.0" "emulator" "system-images;android-34;default;x86_64" "cmdline-tools;11.0"
+          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-34" "platforms;android-35" "platform-tools" "build-tools;34.0.0" "emulator" "system-images;android-34;default;x86_64" "cmdline-tools;11.0"  --sdk_root=$ANDROID_HOME
+          echo y | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses --sdk_root=$ANDROID_HOME
       shell: bash
     - name: Install Android Dependencies
       if: runner.os == 'Windows'
@@ -29,4 +30,5 @@ runs:
           $sdkManagerPath = "$env:ANDROID_SDK_ROOT\cmdline-tools\bin\sdkmanager.bat"
           & $sdkManagerPath "platform-tools" "build-tools;34.0.0" "platforms;android-35" "platform-tools" "build-tools;34.0.0" "cmdline-tools;11.0" --sdk_root=$ANDROID_HOME
           "y" | & $sdkManagerPath --licenses --sdk_root=$ANDROID_HOME
+          & $sdkManagerPath --licenses --sdk_root=$ANDROID_HOME
       shell: pwsh
