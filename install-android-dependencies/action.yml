@@ -4,6 +4,11 @@ author: 'infinitespace-studios'
 runs:
   using: "composite"
   steps:
+    - uses: actions/setup-java@v4
+      if: runner.os == 'Windows'
+      with:
+        distribution: 'microsoft' # See 'Supported distributions' for available options
+        java-version: '17'
     - name: Install Android Dependencies
       if: runner.os != 'Windows'
       run: |
