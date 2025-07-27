@@ -19,6 +19,6 @@ runs:
           Invoke-WebRequest -Uri "https://dl.google.com/android/repository/commandlinetools-win-13114758_latest.zip" -OutFile "commandlinetools.zip"
           $targetDir = "$env:ANDROID_SDK_ROOT"
           Expand-Archive -Path "commandlinetools.zip" -DestinationPath $targetDir -Force
-          $sdkManagerPath = "$env:ANDROID_SDK_ROOT\tools\bin\sdkmanager.exe"
+          $sdkManagerPath = "$env:ANDROID_SDK_ROOT\cmdline-tools\bin\sdkmanager.bat"
           & $sdkManagerPath "platform-tools" "build-tools;34.0.0"
       shell: pwsh
