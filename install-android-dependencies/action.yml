@@ -1,0 +1,36 @@
+name: Install Android Dependencies
+description: 'Installs the requested components into the system Android Sdk.'
+author: 'infinitespace-studios'
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-java@v4
+      if: runner.os == 'Windows'
+      with:
+        distribution: 'microsoft' # See 'Supported distributions' for available options
+        java-version: '17'
+    - name: Install Android Dependencies
+      if: runner.os != 'Windows'
+      run: |
+          echo $ANDROID_HOME
+          find $ANDROID_HOME | grep sdkmanager
+          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --version
+          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-34" "platforms;android-35" "platform-tools" "build-tools;34.0.0" "emulator" "system-images;android-34;default;x86_64" "cmdline-tools;11.0"  --sdk_root=$ANDROID_HOME
+          for i in {1..10}; do
+            echo y
+          done | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses --sdk_root=$ANDROID_HOME
+      shell: bash
+    - name: Install Android Dependencies
+      if: runner.os == 'Windows'
+      run: |
+          echo $ANDROID_HOME
+          echo $JAVA_HOME
+          java -version
+          Invoke-WebRequest -Uri "https://dl.google.com/android/repository/commandlinetools-win-13114758_latest.zip" -OutFile "commandlinetools.zip"
+          $targetDir = "$env:ANDROID_SDK_ROOT"
+          Expand-Archive -Path "commandlinetools.zip" -DestinationPath $targetDir -Force
+          $sdkManagerPath = "$env:ANDROID_SDK_ROOT\cmdline-tools\bin\sdkmanager.bat"
+          & $sdkManagerPath "platform-tools" "build-tools;34.0.0" "platforms;android-35" "platform-tools" "build-tools;34.0.0" "cmdline-tools;11.0" --sdk_root=$ANDROID_HOME
+          (1..10 | ForEach-Object {"Yes"; Start-Sleep -Milliseconds 500}) | & $sdkManagerPath --licenses --sdk_root=$ANDROID_HOME
+          & $sdkManagerPath --licenses --sdk_root=$ANDROID_HOME
+      shell: pwsh
