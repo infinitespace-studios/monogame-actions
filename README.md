@@ -5,6 +5,7 @@ A Repo to hold MonoGame related github actions
 ```yml
 - uses install-wine@v1
 - uses install-fonts@v1
+- uses install-android-dependencies@v1
 - uses publish-itchio@v1
   with:
     channel: 'ubuntu'
